@@ -135,7 +135,7 @@ fi
 
 # 更新チェック
 for cur_file_path in $(cat ${path_common}); do
-  if cmp -s "${dir_old}/${cur_file_path}" "${dir_new}/${cur_file_path}"; then
+  if ! cmp -s "${dir_old}/${cur_file_path}" "${dir_new}/${cur_file_path}"; then
     has_diff=true
     cur_file_path=$(expr "${cur_file_path}" : '..\(.*\)')
     echo "M ${cur_file_path}" >>"${path_out_tmp}"
